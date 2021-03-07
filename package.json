@@ -1,0 +1,23 @@
+{
+  "name": "team-hierarchy",
+  "version": "1.0.0",
+  "description": "Build and store a team hierarchy, with employee roles and departments",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Athear/team-hierarchy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Athear/team-hierarchy/issues"
+  },
+  "homepage": "https://github.com/Athear/team-hierarchy#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "mysql": "^2.18.1"
+  }
+}
