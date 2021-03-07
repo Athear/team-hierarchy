@@ -23,7 +23,7 @@ const orgList = [
 ]
 
 
-const questions =[
+const main =[
     {
         type:"list",
         name:"main",
@@ -45,3 +45,5 @@ const questions =[
         when: function(answers){return answers.main==="Manage organization"}
     }
 ]
+
+module.exports = {main}
