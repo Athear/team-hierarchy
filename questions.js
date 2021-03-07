@@ -41,7 +41,7 @@ const main =[
         type:"list",
         name:"orgAct",
         message: "Select organization action",
-        choices: employeeList,
+        choices: orgList,
         when: function(answers){return answers.main==="Manage organization"}
     }
 ]
