@@ -28,8 +28,8 @@ const empInput = [
     {
         type:"number",
         name:"empl.id",
-        message: answers=>{`Which employee do you want to ${answers.empAct==='Delete employee' ? 'delete' : 'update'}?`},
-        when: answers=>{answers.empAct!=="Add employee"} //TOD :this is always skipped. maybe issue with message
+        message: answers=>{return `Which employee do you want to ${answers.empAct==='Delete employee' ? 'delete' : 'update'}?`},
+        when: answers=>{return answers.empAct!=="Add employee"} //TOD :this is always skipped. maybe issue with message
     },
     {
         type:"input",
