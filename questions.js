@@ -22,13 +22,41 @@ const orgList = [
     "Delete department"
 ]
 
+const orgInput =[
+    {
+        type:"input",
+        name:"org.newRole",
+        message: "Enter new role name",
+        when: answers=>{return answers.orgAct==="Add role"}
+    },
+    {
+        type:"list",
+        name:"org.removeRole",
+        message: "Select the role to be deleted. Only roles with no associated employees may be deleted.",
+        choices: ["cancel"], //TODO: add function to get list from database
+        when: answers=>{return answers.orgAct==="Delete role"}
+    },
+    {
+        type:"input",
+        name:"org.newDepartment",
+        message: "Enter new department name",
+        when: answers=>{return answers.orgAct==="Add department"}
+    },
+    {
+        type:"list",
+        name:"org.removeDepartment",
+        message: "Select the department to be deleted. Only departments with no associated roles may be deleted.",
+        choices: ["cancel"], //TODO: add function to get list from database
+        when: answers=>{return answers.orgAct==="Delete department"}
+    }
+]
 
-//TODO: reuse questions ffrom adding employee for the delete and update
 const empInput = [
     {
-        type:"number",
+        type:"list",
         name:"empl.id",
         message: answers=>{return `Which employee do you want to ${answers.empAct==='Delete employee' ? 'delete' : 'update'}?`},
+        choices: ["cancel"], //TODO: add function to get list from database
         when: answers=>{return answers.empAct!=="Add employee"}
     },
     {
@@ -85,5 +113,6 @@ const main =[
 
 module.exports = {
     main,
-    empInput
+    empInput,
+    orgInput
 }

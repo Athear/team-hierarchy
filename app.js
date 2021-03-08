@@ -15,6 +15,7 @@ async function launch(){
             break;
         case "Manage organization":
             console.log("org do");
+            mainAnswers = await inquirer.prompt(questions.orgInput,mainAnswers);
             break;
         case "View all employees":
             console.log("view all");
