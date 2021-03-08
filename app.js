@@ -6,9 +6,12 @@ async function launch(){
     let mainAnswers = await inquirer.prompt(questions.main);
     // console.log(mainAnswers); //DEBUG
     
+
+    //TODO: pass mainAnsers to the next prompt. Remember you can add properties to the object before passing it along.
     switch (mainAnswers.main){
         case "Manage employees":
             console.log("employee do");
+            mainAnswers = await inquirer.prompt(questions.empInput,mainAnswers);
             break;
         case "Manage organization":
             console.log("org do");
@@ -31,6 +34,8 @@ async function launch(){
         default:
             console.log("unreachable?");
     }
+
+    console.log(mainAnswers);
 
 }
 

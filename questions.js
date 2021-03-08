@@ -23,6 +23,39 @@ const orgList = [
 ]
 
 
+//TODO: reuse questions ffrom adding employee for the delete and update
+const empInput = [
+    {
+        type:"number",
+        name:"empl.id",
+        message: answers=>{`Which employee do you want to ${answers.empAct==='Delete employee' ? 'delete' : 'update'}?`},
+        when: answers=>{answers.empAct!=="Add employee"} //TOD :this is always skipped. maybe issue with message
+    },
+    {
+        type:"input",
+        name:"empl.firstName",
+        message: "Enter employee's first name:",
+    },
+    {
+        type:"input",
+        name:"empl.lastName",
+        message: "Enter employee's last name:",
+    },
+    {
+        type:"list",
+        name:"empl.role",
+        message: "Select employee's role:",
+        choices: ["none"] //TODO: add function to get list from database
+    },
+    {
+        type:"list",
+        name:"empl.manager",
+        message: "Enter employee's manager:",
+        choices: ["none"] //TODO: add function to get list from database
+    }
+]
+
+
 const main =[
     {
         type:"list",
@@ -46,4 +79,7 @@ const main =[
     }
 ]
 
-module.exports = {main}
+module.exports = {
+    main,
+    empInput
+}
