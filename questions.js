@@ -29,29 +29,33 @@ const empInput = [
         type:"number",
         name:"empl.id",
         message: answers=>{return `Which employee do you want to ${answers.empAct==='Delete employee' ? 'delete' : 'update'}?`},
-        when: answers=>{return answers.empAct!=="Add employee"} //TOD :this is always skipped. maybe issue with message
+        when: answers=>{return answers.empAct!=="Add employee"}
     },
     {
         type:"input",
         name:"empl.firstName",
         message: "Enter employee's first name:",
+        when: answers=>{return answers.empAct==="Add employee"}
     },
     {
         type:"input",
         name:"empl.lastName",
         message: "Enter employee's last name:",
+        when: answers=>{return answers.empAct==="Add employee"}
     },
     {
         type:"list",
         name:"empl.role",
         message: "Select employee's role:",
-        choices: ["none"] //TODO: add function to get list from database
+        choices: ["none"], //TODO: add function to get list from database
+        when: answers=>{return answers.empAct==="Add employee" || answers.empAct==="Update employee role"}
     },
     {
         type:"list",
         name:"empl.manager",
         message: "Enter employee's manager:",
-        choices: ["none"] //TODO: add function to get list from database
+        choices: ["none"], //TODO: add function to get list from database
+        when: answers=>{return answers.empAct==="Add employee" || answers.empAct==="Update employee manager"}
     }
 ]
 
