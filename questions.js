@@ -93,7 +93,9 @@ const main =[
         type:"list",
         name:"main",
         message: "What would you like to do?",
-        choices: mainList
+        choices: mainList,
+        pageSize: 4,
+        loop: false
     },
     {
         type:"list",
