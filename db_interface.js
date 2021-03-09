@@ -16,6 +16,7 @@ module.exports={
         const queryStr = "select * from employee";
         connection.query(queryStr,(err,res)=>{
             if(err) throw err;
+            console.log();
             console.table(res);
             callback();
         })
