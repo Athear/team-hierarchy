@@ -23,7 +23,7 @@ async function launch(){
             mainAnswers = await inquirer.prompt(questions.orgInput,mainAnswers);
             break;
         case "View all employees":
-            interface.getEmployees(interface.connection,showTable);
+            interface.getEmployees(showTable);
             break;
         case "View employees by role":
             console.log("view by role");
@@ -32,7 +32,7 @@ async function launch(){
             console.log("view by man");
             break;
         case "View roles":
-            interface.getRoles(interface.connection,showTable);
+            interface.getRoles(showTable);
             break;
         case "View departments":
             console.log("view deps");
