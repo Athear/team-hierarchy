@@ -23,7 +23,7 @@ async function launch(){
             mainAnswers = await inquirer.prompt(questions.orgInput,mainAnswers);
             break;
         case "View all employees":
-            interface.viewEmployees(interface.connection,launch);
+            interface.getEmployees(interface.connection,showTable);
             break;
         case "View employees by role":
             console.log("view by role");
@@ -32,7 +32,7 @@ async function launch(){
             console.log("view by man");
             break;
         case "View roles":
-            console.log("view roles");
+            interface.getRoles(interface.connection,showTable);
             break;
         case "View departments":
             console.log("view deps");
@@ -43,6 +43,12 @@ async function launch(){
 
     console.log(mainAnswers);
     //TODO: add additional inquierer response for exiting application
+    launch();
+}
+
+function showTable(res){
+    console.log();
+    console.table(res);
     launch();
 }
 

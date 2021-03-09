@@ -12,13 +12,19 @@ module.exports={
         port: process.env.DB_PORT
     }),
 
-    viewEmployees : (connection,callback) =>{
+    getEmployees : (connection,callback) =>{
         const queryStr = "select * from employee";
         connection.query(queryStr,(err,res)=>{
             if(err) throw err;
-            console.log();
-            console.table(res);
-            callback();
+            callback(res);
+        })
+    },
+
+    getRoles : (connection,callback) =>{
+        const queryStr = "select * from role";
+        connection.query(queryStr,(err,res)=>{
+            if(err) throw err;
+            callback(res);
         })
     }
 
