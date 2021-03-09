@@ -27,6 +27,14 @@ module.exports={
             if(err) throw err;
             callback(res);
         })
+    },
+
+    getDepartments : (callback) =>{
+        const queryStr = "select * from department";
+        connection.query(queryStr,(err,res)=>{
+            if(err) throw err;
+            callback(res);
+        })
     }
 
 }

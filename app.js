@@ -33,7 +33,7 @@ async function launch(){
             interface.getRoles(showTable);
             break;
         case "View departments":
-            console.log("This option is not yet available");
+            interface.getDepartments(showTable);
             break;
         case "exit":
         default:
