@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS department(
     id int auto_increment not null,
     name varchar(30) not null,
     primary key (id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS role(
     id int auto_increment not null,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS role(
     department_id int not null,
     primary key(id),
     foreign key(department_id) references department(id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS employee(
     id int auto_increment not null,
@@ -26,4 +26,4 @@ CREATE TABLE IF NOT EXISTS employee(
     primary key (id),
     foreign key (role_id) references role(id),
     foreign key (manager_id) references employee(id)
-)
+);
