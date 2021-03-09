@@ -37,7 +37,8 @@ async function launch(){
     }
 
     console.log(mainAnswers);
-
+    //TODO: add additional inquierer response for exiting application
+    launch();
 }
 
 launch();
