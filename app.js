@@ -15,30 +15,29 @@ async function launch(){
     //TODO: pass mainAnsers to the next prompt. Remember you can add properties to the object before passing it along.
     switch (mainAnswers.main){
         case "Manage employees":
-            console.log("employee do");
             mainAnswers = await inquirer.prompt(questions.empInput,mainAnswers);
             break;
         case "Manage organization":
-            console.log("org do");
             mainAnswers = await inquirer.prompt(questions.orgInput,mainAnswers);
             break;
         case "View all employees":
             interface.getEmployees(showTable);
             break;
         case "View employees by role":
-            console.log("view by role");
+            console.log("This option is not yet available");
             break;
         case "View employees by manager":
-            console.log("view by man");
+            console.log("This option is not yet available");
             break;
         case "View roles":
             interface.getRoles(showTable);
             break;
         case "View departments":
-            console.log("view deps");
+            console.log("This option is not yet available");
             break;
+        case "exit":
         default:
-            console.log("unreachable?");
+            console.log("Exit application is not available");
     }
 
     console.log(mainAnswers);
