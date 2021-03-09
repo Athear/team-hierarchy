@@ -1,5 +1,10 @@
+
+// const mysql = require('mysql'); //DEBUG. Might not need this here;
+// require('dotenv').config();
+
 const inquirer = require("inquirer");
-const questions = require("./questions")
+const questions = require("./questions");
+const interface = require("./db_interface");
 
 async function launch(){
 
@@ -18,7 +23,7 @@ async function launch(){
             mainAnswers = await inquirer.prompt(questions.orgInput,mainAnswers);
             break;
         case "View all employees":
-            console.log("view all");
+            interface.viewEmployees(interface.connection,launch);
             break;
         case "View employees by role":
             console.log("view by role");
@@ -41,4 +46,7 @@ async function launch(){
     launch();
 }
 
-launch();
+interface.connection.connect((err)=>{
+    if(err) throw err;
+    launch();
+})
