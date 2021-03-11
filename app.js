@@ -74,6 +74,7 @@ async function manageOrganization(answers){
     //TODO: need arrays for roles and departments here. Add to answers object.
     //might be able to pass the functions to fetch these instead.
     answers = await inquirer.prompt(questions.orgInput,answers);
+    answers.departments = async () => {return await interface.getDepartments()}
     let result = ''
     switch(answers.orgAct){
         case "Add role":
@@ -88,6 +89,7 @@ async function manageOrganization(answers){
             result = answers;
             break;
         case "Delete department":
+            console.log(await answers.departments());
             result = answers;
             break;
     }
