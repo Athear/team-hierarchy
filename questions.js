@@ -1,11 +1,12 @@
 const mainList = [
     "View all employees",
-    "View employees by role",
+    "View employees by department",
     "View employees by manager",
     "View roles",
     "View departments",
     "Manage employees",
-    "Manage organization"
+    "Manage organization",
+    "exit"
 ]
 
 const employeeList = [

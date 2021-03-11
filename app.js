@@ -3,8 +3,8 @@
 // require('dotenv').config();
 
 const inquirer = require("inquirer");
-const questions = require("./questions");
 const interface = require("./db_interface");
+const questions = require("./questions");
 
 async function launch(){
 
@@ -23,11 +23,11 @@ async function launch(){
         case "View all employees":
             interface.getEmployees(showTable);
             break;
-        case "View employees by role":
-            console.log("This option is not yet available");
+        case "View employees by department":
+            logAction("This option is not yet available");
             break;
         case "View employees by manager":
-            console.log("This option is not yet available");
+            logAction("This option is not yet available");
             break;
         case "View roles":
             interface.getRoles(showTable);
@@ -37,17 +37,21 @@ async function launch(){
             break;
         case "exit":
         default:
-            console.log("Exit application is not available");
+            interface.connection.end();
+            break;
     }
-
-    console.log(mainAnswers);
-    //TODO: add additional inquierer response for exiting application
-    launch();
+    
 }
 
 function showTable(res){
     console.log();
     console.table(res);
+    launch();
+}
+
+function  logAction(print){
+    console.log();
+    console.log(print);
     launch();
 }
 
