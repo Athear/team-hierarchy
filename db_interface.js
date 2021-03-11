@@ -35,6 +35,18 @@ module.exports={
             if(err) throw err;
             callback(res);
         })
+    },
+
+    addDepartment : (newName,callback) =>{
+        const queryStr = "INSERT INTO department SET ?";
+        connection.query(queryStr,
+            {name:newName},
+            (err,res)=>{
+                if(err) throw err;
+                let retStr = `Added ${newName} department`;
+                callback(retStr);
+            }
+        );
     }
 
 }

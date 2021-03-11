@@ -24,7 +24,7 @@ async function launch(){
             interface.getEmployees(showTable);
             break;
         case "View employees by department":
-            logAction("This option is not yet available");
+            showTable("This option is not yet available");
             break;
         case "View employees by manager":
             logAction("This option is not yet available");
@@ -76,6 +76,7 @@ async function manageOrganization(answers){
             logAction(answers);
             break;
         case "Add department":
+            interface.addDepartment(answers.org.newDepartment, logAction);
             logAction(answers);
             break;
         case "Delete department":
