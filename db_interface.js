@@ -10,15 +10,24 @@ const connection = mysql.createConnection({
     port: process.env.DB_PORT
 });
 
+const getterPromise = (query) =>{
+    return new Promise((resolve,reject)=>{
+        connection.query(query,(err,res)=>{
+            if(err){
+                reject(new Error(err));
+            }else{
+                resolve(res);
+            }
+        })
+    });
+}
+
 
 module.exports={
     connection,
-    getEmployees : (callback) =>{
+    getEmployees : async () =>{
         const queryStr = "select * from employee";
-        connection.query(queryStr,(err,res)=>{
-            if(err) throw err;
-            callback(res);
-        })
+        return getterPromise(queryStr);
     },
 
     getRoles : (callback) =>{
@@ -29,11 +38,11 @@ module.exports={
         })
     },
 
-    getDepartments : (callback) =>{
+    getDepartments : async (callback) =>{
         const queryStr = "select * from department";
         connection.query(queryStr,(err,res)=>{
             if(err) throw err;
-            callback(res);
+            return callback(res);
         })
     },
 
@@ -44,6 +53,18 @@ module.exports={
             (err,res)=>{
                 if(err) throw err;
                 let retStr = `Added ${newName} department`;
+                callback(retStr);
+            }
+        );
+    },
+
+    removeDepartment : (newName,callback) =>{
+        const queryStr = "DELETE FROM department SET ?";
+        connection.query(queryStr,
+            {name:newName},
+            (err,res)=>{
+                if(err) throw err;
+                let retStr = `Removed ${newName} department`;
                 callback(retStr);
             }
         );

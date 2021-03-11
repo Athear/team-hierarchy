@@ -21,10 +21,10 @@ async function launch(){
             await manageOrganization(mainAnswers);
             break;
         case "View all employees":
-            interface.getEmployees(showTable);
+            showTable(await interface.getEmployees());
             break;
         case "View employees by department":
-            showTable("This option is not yet available");
+            logAction("This option is not yet available");
             break;
         case "View employees by manager":
             logAction("This option is not yet available");
