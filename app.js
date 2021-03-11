@@ -15,12 +15,10 @@ async function launch(){
     //TODO: pass mainAnsers to the next prompt. Remember you can add properties to the object before passing it along.
     switch (mainAnswers.main){
         case "Manage employees":
-            mainAnswers = await inquirer.prompt(questions.empInput,mainAnswers);
             await manageEmployees(mainAnswers);
             break;
         case "Manage organization":
-            mainAnswers = await inquirer.prompt(questions.orgInput,mainAnswers);
-            manageOrganization(mainAnswers);
+            await manageOrganization(mainAnswers);
             break;
         case "View all employees":
             interface.getEmployees(showTable);
@@ -47,11 +45,43 @@ async function launch(){
 
 
 async function manageEmployees(answers){
-    logAction(answers);
+    //TODO: get arrays for employees, roles and managers. add to answers object.
+    //might be able to add the functions for these to the answers struct instead
+    answers = await inquirer.prompt(questions.empInput,answers);
+    switch(answers.empAct){
+        case "Add employee":
+            logAction(answers);
+            break;
+        case "Delete employee":
+            logAction(answers);
+            break;
+        case "Update employee role":
+            logAction(answers);
+            break;
+        case "Update employee manager":
+            logAction(answers);
+            break;
+    }
 }
 
 async function manageOrganization(answers){
-    logAction(answers);
+    //TODO: need arrays for roles and departments here. Add to answers object.
+    //might be able to pass the functions to fetch these instead.
+    answers = await inquirer.prompt(questions.orgInput,answers);
+    switch(answers.orgAct){
+        case "Add role":
+            logAction(answers);
+            break;
+        case "Delete role":
+            logAction(answers);
+            break;
+        case "Add department":
+            logAction(answers);
+            break;
+        case "Delete department":
+            logAction(answers);
+            break;
+    }
 }
 
 function showTable(res){
