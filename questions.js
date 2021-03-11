@@ -47,8 +47,9 @@ const orgInput =[
         type:"list",
         name:"org.removeDepartment",
         message: "Select the department to be deleted. Only departments with no associated roles may be deleted.",
-        choices: ["cancel"], //TODO: add function to get list from database
-        when: answers=>{return answers.orgAct==="Delete department"}
+        choices: async answers=>{return await answers.departments()},
+        when: answers=>{return answers.orgAct==="Delete department"},
+        loop: false
     }
 ]
 
