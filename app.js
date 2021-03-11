@@ -11,36 +11,40 @@ async function launch(){
     let mainAnswers = await inquirer.prompt(questions.main);
     // console.log(mainAnswers); //DEBUG
     
+    let data =''
 
     //TODO: pass mainAnsers to the next prompt. Remember you can add properties to the object before passing it along.
     switch (mainAnswers.main){
         case "Manage employees":
-            await manageEmployees(mainAnswers);
+            data = await manageEmployees(mainAnswers);
             break;
         case "Manage organization":
-            await manageOrganization(mainAnswers);
+            data = await manageOrganization(mainAnswers);
             break;
         case "View all employees":
-            showTable(await interface.getEmployees());
+            data = await interface.getEmployees();
             break;
         case "View employees by department":
-            logAction("This option is not yet available");
+            data = "This option is not yet available";
             break;
         case "View employees by manager":
-            logAction("This option is not yet available");
+            data = "This option is not yet available";
             break;
         case "View roles":
-            showTable(await interface.getRoles());
+            data = await interface.getRoles();
             break;
         case "View departments":
-            showTable(await interface.getDepartments());
+            data = await interface.getDepartments();
             break;
         case "exit":
         default:
             interface.connection.end();
-            break;
+            return;
     }
 
+    console.log();
+    console.table(data);
+    launch();
 }
 
 
@@ -48,47 +52,46 @@ async function manageEmployees(answers){
     //TODO: get arrays for employees, roles and managers. add to answers object.
     //might be able to add the functions for these to the answers struct instead
     answers = await inquirer.prompt(questions.empInput,answers);
+    let result = ''
     switch(answers.empAct){
         case "Add employee":
-            logAction(answers);
+            result = answers;
             break;
         case "Delete employee":
-            logAction(answers);
+            result = answers;
             break;
         case "Update employee role":
-            logAction(answers);
+            result = answers;
             break;
         case "Update employee manager":
-            logAction(answers);
+            result = answers;
             break;
     }
+    return JSON.stringify(result);
 }
 
 async function manageOrganization(answers){
     //TODO: need arrays for roles and departments here. Add to answers object.
     //might be able to pass the functions to fetch these instead.
     answers = await inquirer.prompt(questions.orgInput,answers);
+    let result = ''
     switch(answers.orgAct){
         case "Add role":
-            logAction(answers);
+            result = answers;
             break;
         case "Delete role":
-            logAction(answers);
+            result = answers;
             break;
         case "Add department":
-            interface.addDepartment(answers.org.newDepartment, logAction);
-            logAction(answers);
+            //TODO: get rid of callback here
+            interface.addDepartment(answers.org.newDepartment, logAction); 
+            result = answers;
             break;
         case "Delete department":
-            logAction(answers);
+            result = answers;
             break;
     }
-}
-
-function showTable(res){
-    console.log();
-    console.table(res);
-    launch();
+    return JSON.stringify(result);
 }
 
 function  logAction(print){
