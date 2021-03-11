@@ -30,10 +30,10 @@ async function launch(){
             logAction("This option is not yet available");
             break;
         case "View roles":
-            interface.getRoles(showTable);
+            showTable(await interface.getRoles());
             break;
         case "View departments":
-            interface.getDepartments(showTable);
+            showTable(await interface.getDepartments());
             break;
         case "exit":
         default:

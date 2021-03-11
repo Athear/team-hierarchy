@@ -30,20 +30,14 @@ module.exports={
         return getterPromise(queryStr);
     },
 
-    getRoles : (callback) =>{
+    getRoles : async () =>{
         const queryStr = "select * from role";
-        connection.query(queryStr,(err,res)=>{
-            if(err) throw err;
-            callback(res);
-        })
+        return getterPromise(queryStr);
     },
 
-    getDepartments : async (callback) =>{
+    getDepartments : async () =>{
         const queryStr = "select * from department";
-        connection.query(queryStr,(err,res)=>{
-            if(err) throw err;
-            return callback(res);
-        })
+        return getterPromise(queryStr);
     },
 
     addDepartment : (newName,callback) =>{
