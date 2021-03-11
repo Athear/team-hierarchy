@@ -16,9 +16,11 @@ async function launch(){
     switch (mainAnswers.main){
         case "Manage employees":
             mainAnswers = await inquirer.prompt(questions.empInput,mainAnswers);
+            await manageEmployees(mainAnswers);
             break;
         case "Manage organization":
             mainAnswers = await inquirer.prompt(questions.orgInput,mainAnswers);
+            manageOrganization(mainAnswers);
             break;
         case "View all employees":
             interface.getEmployees(showTable);
@@ -40,7 +42,16 @@ async function launch(){
             interface.connection.end();
             break;
     }
-    
+
+}
+
+
+async function manageEmployees(answers){
+    logAction(answers);
+}
+
+async function manageOrganization(answers){
+    logAction(answers);
 }
 
 function showTable(res){
