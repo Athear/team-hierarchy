@@ -89,9 +89,7 @@ async function manageOrganization(answers){
             result = answers;
             break;
         case "Add department":
-            //TODO: get rid of callback here
-            interface.addDepartment(answers.org.newDepartment); 
-            result = answers;
+            result = await interface.addDepartment(answers.org.newDepartment); 
             break;
         case "Delete department":
             result = await interface.removeDepartment(answers.org.removeDepartment);
