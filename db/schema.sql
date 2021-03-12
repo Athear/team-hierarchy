@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS role(
     department_id int not null,
     primary key(id),
     foreign key(department_id) references department(id)
+    on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS employee(
@@ -24,6 +25,6 @@ CREATE TABLE IF NOT EXISTS employee(
     role_id int not null,
     manager_id int,
     primary key (id),
-    foreign key (role_id) references role(id),
+    foreign key (role_id) references role(id) on delete cascade,
     foreign key (manager_id) references employee(id)
 );

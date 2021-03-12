@@ -1,6 +1,8 @@
 const mysql = require('mysql');
 require('dotenv').config();
 
+//TODO: this would be better split into classes. That would take a fair bit of refactoring though.
+
 const connection = mysql.createConnection({
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
@@ -22,6 +24,17 @@ const getterPromise = (query) =>{
     });
 }
 
+const updaterPromise = (query,params,retStr)=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(query,params,(err,res)=>{
+            if(err){
+                reject(new Error(err));
+            }else{
+                resolve(retStr);
+            }
+        })
+    });
+}
 
 module.exports={
     connection,
@@ -40,28 +53,14 @@ module.exports={
         return getterPromise(queryStr);
     },
 
-    addDepartment : (newName,callback) =>{
+    addDepartment : (newName) =>{
         const queryStr = "INSERT INTO department SET ?";
-        connection.query(queryStr,
-            {name:newName},
-            (err,res)=>{
-                if(err) throw err;
-                let retStr = `Added ${newName} department`;
-                callback(retStr);
-            }
-        );
+        return updaterPromise(queryStr,{name:newName},`Added ${newName} department`)
     },
 
-    removeDepartment : (newName,callback) =>{
-        const queryStr = "DELETE FROM department SET ?";
-        connection.query(queryStr,
-            {name:newName},
-            (err,res)=>{
-                if(err) throw err;
-                let retStr = `Removed ${newName} department`;
-                callback(retStr);
-            }
-        );
+    removeDepartment : (id) =>{
+        const queryStr = "DELETE FROM department WHERE ?";
+        return updaterPromise(queryStr,{id:id},'Removed department');
     }
 
 }

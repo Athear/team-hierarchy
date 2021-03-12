@@ -90,12 +90,11 @@ async function manageOrganization(answers){
             break;
         case "Add department":
             //TODO: get rid of callback here
-            interface.addDepartment(answers.org.newDepartment, logAction); 
+            interface.addDepartment(answers.org.newDepartment); 
             result = answers;
             break;
         case "Delete department":
-            //TODO: call interface here
-            result = answers;
+            result = await interface.removeDepartment(answers.org.removeDepartment);
             break;
     }
     return JSON.stringify(result);
