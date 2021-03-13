@@ -106,14 +106,23 @@ const empInput = [
         type:"list",
         name:"empl.role",
         message: "Select employee's role:",
-        choices: ["none"], //TODO: add function to get list from database
+        choices: async answers=>{
+            let roles = await answers.roles();
+            roles = roles.map(role => {return {value:role.id, name:role.title}});
+            return roles;
+        },
         when: answers=>{return answers.empAct==="Add employee" || answers.empAct==="Update employee role"}
     },
     {
         type:"list",
         name:"empl.manager",
         message: "Enter employee's manager:",
-        choices: ["none"], //TODO: add function to get list from database
+        choices: async answers=>{
+            let mans = await answers.managers();
+            mans = mans.map(manager => {return {value:manager.id, name:manager.first_name+' '+manager.last_name}});
+            mans.unshift({value:-1,name:'none'});
+            return mans;
+        },
         when: answers=>{return answers.empAct==="Add employee" || answers.empAct==="Update employee manager"}
     }
 ]

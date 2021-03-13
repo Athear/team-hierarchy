@@ -12,10 +12,10 @@ async function launch(){
     
     mainAnswers.departments = interface.getDepartments;
     mainAnswers.roles = interface.getRoles;
+    mainAnswers.managers = interface.getManagers;
 
     let data =''
 
-    //TODO: pass mainAnsers to the next prompt. Remember you can add properties to the object before passing it along.
     switch (mainAnswers.main){
         case "Manage employees":
             data = await manageEmployees(mainAnswers);
@@ -57,7 +57,7 @@ async function manageEmployees(answers){
     let result = ''
     switch(answers.empAct){
         case "Add employee":
-            result = answers;
+            result = await interface.addEmployee(answers.empl.firstName,answers.empl.lastName,answers.empl.role,answers.empl.manager);
             break;
         case "Delete employee":
             result = answers;

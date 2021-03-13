@@ -43,6 +43,11 @@ module.exports={
         return getterPromise(queryStr);
     },
 
+    getManagers : async () =>{
+        const queryStr = "select * from employee where manager_id is null";
+        return getterPromise(queryStr);
+    },
+
     getRoles : async () =>{
         const queryStr = "select * from role";
         return getterPromise(queryStr);
@@ -51,6 +56,20 @@ module.exports={
     getDepartments : async () =>{
         const queryStr = "select * from department";
         return getterPromise(queryStr);
+    },
+
+    addEmployee : (firstName,lastName,role,manager)=>{
+        employeeObj = {
+            first_name:firstName,
+            last_name:lastName,
+            role_id:role
+        };
+        if(manager>=0){
+            employeeObj.manager_id=manager;
+        }
+        const queryStr = "INSERT INTO employee SET ?";
+        return updaterPromise(queryStr,employeeObj,`Hired ${firstName} ${lastName}`)        
+
     },
 
     addRole : (title,salary,department) =>{
