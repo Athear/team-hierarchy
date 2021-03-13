@@ -98,12 +98,6 @@ async function manageOrganization(answers){
     return JSON.stringify(result);
 }
 
-function  logAction(print){
-    console.log();
-    console.log(print);
-    launch();
-}
-
 interface.connection.connect((err)=>{
     if(err) throw err;
     launch();
