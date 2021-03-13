@@ -58,6 +58,20 @@ module.exports={
         return getterPromise(queryStr);
     },
 
+    updateEmployee : (target,targetID,empID)=>{
+        const queryStr = "UPDATE employee SET ? WHERE ?"
+        const setObj={};
+        if(target==='role')
+        {
+            setObj.role_id=targetID
+        }else if(target==='manager')
+        {
+            setObj.manager_id=targetID
+        }
+        //else{setObj[target]=targetID}
+        return updaterPromise(queryStr,[setObj,{id:empID}],`Employee ${target} updated`)
+    },
+
     addEmployee : (firstName,lastName,role,manager)=>{
         employeeObj = {
             first_name:firstName,

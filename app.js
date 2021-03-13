@@ -52,8 +52,6 @@ async function launch(){
 
 
 async function manageEmployees(answers){
-    //TODO: get arrays for employees, roles and managers. add to answers object.
-    //might be able to add the functions for these to the answers struct instead
     answers = await inquirer.prompt(questions.empInput,answers);
     let result = ''
     switch(answers.empAct){
@@ -61,13 +59,18 @@ async function manageEmployees(answers){
             result = await interface.addEmployee(answers.empl.firstName,answers.empl.lastName,answers.empl.role,answers.empl.manager);
             break;
         case "Delete employee":
-            result = await interface.removeEmployee(answers.empl.id);
+            if(answers.empl.id>=0){
+                result = await interface.removeEmployee(answers.empl.id);
+            }else{
+                result = 'cancelled';
+            }
             break;
         case "Update employee role":
-            result = answers;
+            result = await interface.updateEmployee('role',answers.empl.role,answers.empl.id);
             break;
         case "Update employee manager":
-            result = answers;
+            const managerId = answers.empl.manager>=0 ? answers.empl.manager : null
+            result = await interface.updateEmployee('manager',managerId,answers.empl.id);
             break;
     }
     return JSON.stringify(result);

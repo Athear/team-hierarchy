@@ -117,7 +117,8 @@ const empInput = [
             roles = roles.map(role => {return {value:role.id, name:role.title}});
             return roles;
         },
-        when: answers=>{return answers.empAct==="Add employee" || answers.empAct==="Update employee role"}
+        when: answers=>{return answers.empAct==="Add employee" || answers.empAct==="Update employee role"},
+        loop:false
     },
     {
         type:"list",
@@ -129,7 +130,8 @@ const empInput = [
             mans.unshift({value:-1,name:'none'});
             return mans;
         },
-        when: answers=>{return answers.empAct==="Add employee" || answers.empAct==="Update employee manager"}
+        when: answers=>{return answers.empAct==="Add employee" || answers.empAct==="Update employee manager"},
+        loop:false
     }
 ]
 
