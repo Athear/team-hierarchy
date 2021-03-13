@@ -82,7 +82,7 @@ async function manageOrganization(answers){
             result = await interface.addRole(answers.org.newRole,answers.org.newRoleMoney,answers.org.newRoleDepartment)
             break;
         case "Delete role":
-            result = answers;
+            result = await interface.removeRole(answers.org.removeRole);
             break;
         case "Add department":
             result = await interface.addDepartment(answers.org.newDepartment); 
