@@ -31,6 +31,12 @@ const orgInput =[
         when: answers=>{return answers.orgAct==="Add role"}
     },
     {
+        type:"number",
+        name:"org.newRoleMoney",
+        message: "Enter base salary",
+        when: answers=>{return answers.orgAct==="Add role"}
+    },
+    {
         type:"list",
         name:"org.removeRole",
         message: "Select the role to be deleted. Only roles with no associated employees may be deleted.",
@@ -47,7 +53,12 @@ const orgInput =[
         type:"list",
         name:"org.removeDepartment",
         message: "Select the department to be deleted. Only departments with no associated roles may be deleted.",
-        choices: async answers=>{return await answers.departments()},
+        choices: async answers=>{
+            let depts = await answers.departments();
+            depts = depts.map(dep => {return {value:dep.id, name:dep.name}});
+            depts.unshift({value:-1,name:'cancel'});
+            return depts;
+        },
         when: answers=>{return answers.orgAct==="Delete department"},
         loop: false
     }
