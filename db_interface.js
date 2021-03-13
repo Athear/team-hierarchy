@@ -127,6 +127,14 @@ module.exports={
         const queryStr = `select r.title,r.salary,d.name as department from role r
         inner join department d on r.department_id = d.id`
         return getterPromise(queryStr);
-    }
+    },
 
+    getBudget : ()=>{
+        const queryStr = `select d.name as Department, sum(r.salary) as Budget
+        from employee e
+        inner join role r on e.role_id = r.id
+        inner join department d on r.department_id = d.id
+        group by d.id`;
+        return getterPromise(queryStr);
+    }
 }

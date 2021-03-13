@@ -25,9 +25,6 @@ async function launch(){
         case "View all employees":
             data = await interface.prettyEmployees();
             break;
-        case "View employees by department":
-            data = "This option is not yet available";
-            break;
         case "View employees by manager":
             data = await interface.prettyEmployees(mainAnswers.manView);
             break;
@@ -36,6 +33,9 @@ async function launch(){
             break;
         case "View departments":
             data = await interface.getDepartments();
+            break;
+        case "Show budget by department":
+            data = await interface.getBudget();
             break;
         case "exit":
         default:

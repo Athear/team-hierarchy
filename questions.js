@@ -4,6 +4,7 @@ const mainList = [
     "View employees by manager",
     "View roles",
     "View departments",
+    "Show budget by department",
     "Manage employees",
     "Manage organization",
     "exit"
