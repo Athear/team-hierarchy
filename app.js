@@ -13,6 +13,7 @@ async function launch(){
     mainAnswers.departments = interface.getDepartments;
     mainAnswers.roles = interface.getRoles;
     mainAnswers.managers = interface.getManagers;
+    mainAnswers.employees = interface.getEmployees;
 
     let data =''
 
@@ -60,7 +61,7 @@ async function manageEmployees(answers){
             result = await interface.addEmployee(answers.empl.firstName,answers.empl.lastName,answers.empl.role,answers.empl.manager);
             break;
         case "Delete employee":
-            result = answers;
+            result = await interface.removeEmployee(answers.empl.id);
             break;
         case "Update employee role":
             result = answers;

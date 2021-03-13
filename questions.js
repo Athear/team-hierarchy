@@ -87,8 +87,14 @@ const empInput = [
         type:"list",
         name:"empl.id",
         message: answers=>{return `Which employee do you want to ${answers.empAct==='Delete employee' ? 'delete' : 'update'}?`},
-        choices: ["cancel"], //TODO: add function to get list from database
-        when: answers=>{return answers.empAct!=="Add employee"}
+        choices: async answers=>{
+            let employees = await answers.employees();
+            employees = employees.map(worker => {return {value:worker.id, name:worker.first_name+' '+worker.last_name}});
+            employees.unshift({value:-1,name:'cancel'});
+            return employees;
+        },
+        when: answers=>{return answers.empAct!=="Add employee"},
+        loop:false
     },
     {
         type:"input",

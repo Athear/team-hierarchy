@@ -82,6 +82,12 @@ module.exports={
         return updaterPromise(queryStr,{name:newName},`Added ${newName} department`)
     },
 
+
+    removeEmployee : (id) =>{
+        const queryStr = "DELETE FROM employee WHERE ?";
+        return updaterPromise(queryStr,{id:id},'Removed employee');
+    },
+
     removeRole : (id) =>{
         const queryStr = "DELETE FROM role WHERE ?";
         return updaterPromise(queryStr,{id:id},'Removed role');
