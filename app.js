@@ -9,8 +9,10 @@ const questions = require("./questions");
 async function launch(){
 
     let mainAnswers = await inquirer.prompt(questions.main);
-    // console.log(mainAnswers); //DEBUG
     
+    mainAnswers.departments = interface.getDepartments;
+    mainAnswers.roles = interface.getRoles;
+
     let data =''
 
     //TODO: pass mainAnsers to the next prompt. Remember you can add properties to the object before passing it along.
@@ -22,7 +24,7 @@ async function launch(){
             data = await manageOrganization(mainAnswers);
             break;
         case "View all employees":
-            data = await interface.getEmployees();
+            data = await interface.prettyEmployees();
             break;
         case "View employees by department":
             data = "This option is not yet available";
@@ -31,7 +33,7 @@ async function launch(){
             data = "This option is not yet available";
             break;
         case "View roles":
-            data = await interface.getRoles();
+            data = await interface.prettyRoles();
             break;
         case "View departments":
             data = await interface.getDepartments();
@@ -71,10 +73,6 @@ async function manageEmployees(answers){
 }
 
 async function manageOrganization(answers){
-    //TODO: need arrays for roles and departments here. Add to answers object.
-    //might be able to pass the functions to fetch these instead.
-    answers.departments = interface.getDepartments;
-    answers.roles = interface.getRoles;
     answers = await inquirer.prompt(questions.orgInput,answers);
     let result = ''
     switch(answers.orgAct){

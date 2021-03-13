@@ -71,6 +71,21 @@ module.exports={
     removeDepartment : (id) =>{
         const queryStr = "DELETE FROM department WHERE ?";
         return updaterPromise(queryStr,{id:id},'Removed department');
+    },
+
+    prettyEmployees : () =>{
+        const queryStr = `select e.first_name,e.last_name,r.title,d.name as department, r.salary,CONCAT(m.first_name," ",m.last_name) as manager
+        from employee e
+        left join employee m on e.manager_id = m.id
+        inner join role r on e.role_id = r.id
+        inner join department d on r.department_id = d.id`;
+        return getterPromise(queryStr);
+    },
+
+    prettyRoles: () =>{
+        const queryStr = `select r.title,r.salary,d.name as department from role r
+        inner join department d on r.department_id = d.id`
+        return getterPromise(queryStr);
     }
 
 }
