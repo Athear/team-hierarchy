@@ -58,7 +58,8 @@ const orgInput =[
             roles.unshift({value:-1,name:'cancel'});
             return roles;
         },
-        when: answers=>{return answers.orgAct==="Delete role"}
+        when: answers=>{return answers.orgAct==="Delete role"},
+        loop: false
     },
     {
         type:"input",

@@ -82,13 +82,21 @@ async function manageOrganization(answers){
             result = await interface.addRole(answers.org.newRole,answers.org.newRoleMoney,answers.org.newRoleDepartment)
             break;
         case "Delete role":
-            result = await interface.removeRole(answers.org.removeRole);
+            if(answers.org.removeRole>=0){
+                result = await interface.removeRole(answers.org.removeRole);
+            }else{
+                result = 'cancelled';
+            }
             break;
         case "Add department":
             result = await interface.addDepartment(answers.org.newDepartment); 
             break;
         case "Delete department":
-            result = await interface.removeDepartment(answers.org.removeDepartment);
+            if(answers.org.removeDepartment>=0){
+                result = await interface.removeDepartment(answers.org.removeDepartment);
+            }else{
+                result = 'cancelled';
+            }
             break;
     }
     return JSON.stringify(result);
