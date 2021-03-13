@@ -158,6 +158,16 @@ const main =[
         message: "Select organization action",
         choices: orgList,
         when: function(answers){return answers.main==="Manage organization"}
+    },
+    {
+        type:"list",
+        name:"manView",
+        message: "Select organization action",
+        choices: async answers=>{
+            let mans = await answers.managers();
+            return mans.map(manager => {return {value:manager.id, name:manager.first_name+' '+manager.last_name}});
+        },
+        when: function(answers){return answers.main==="View employees by manager"}
     }
 ]
 

@@ -8,12 +8,14 @@ const questions = require("./questions");
 
 async function launch(){
 
-    let mainAnswers = await inquirer.prompt(questions.main);
-    
-    mainAnswers.departments = interface.getDepartments;
-    mainAnswers.roles = interface.getRoles;
-    mainAnswers.managers = interface.getManagers;
-    mainAnswers.employees = interface.getEmployees;
+    let mainAnswers = {
+        departments : interface.getDepartments,
+        roles : interface.getRoles,
+        managers : interface.getManagers,
+        employees : interface.getEmployees
+    }
+
+    mainAnswers = await inquirer.prompt(questions.main,mainAnswers);
 
     let data =''
 
@@ -31,7 +33,7 @@ async function launch(){
             data = "This option is not yet available";
             break;
         case "View employees by manager":
-            data = "This option is not yet available";
+            data = await interface.prettyEmployees(mainAnswers.manView);
             break;
         case "View roles":
             data = await interface.prettyRoles();

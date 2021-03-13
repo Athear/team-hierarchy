@@ -12,9 +12,9 @@ const connection = mysql.createConnection({
     port: process.env.DB_PORT
 });
 
-const getterPromise = (query) =>{
+const getterPromise = (query,params) =>{
     return new Promise((resolve,reject)=>{
-        connection.query(query,(err,res)=>{
+        connection.query(query,params,(err,res)=>{
             if(err){
                 reject(new Error(err));
             }else{
@@ -112,13 +112,17 @@ module.exports={
         return updaterPromise(queryStr,{id:id},'Removed department');
     },
 
-    prettyEmployees : () =>{
-        const queryStr = `select e.first_name,e.last_name,r.title,d.name as department, r.salary,CONCAT(m.first_name," ",m.last_name) as manager
+    prettyEmployees : (managerID) =>{
+        let queryStr = `select e.first_name,e.last_name,r.title,d.name as department, r.salary,CONCAT(m.first_name," ",m.last_name) as manager
         from employee e
         left join employee m on e.manager_id = m.id
         inner join role r on e.role_id = r.id
         inner join department d on r.department_id = d.id`;
-        return getterPromise(queryStr);
+        if(managerID>=0){
+            queryStr+=' where ?';
+
+        }
+        return getterPromise(queryStr,{'e.manager_id':managerID});
     },
 
     prettyRoles: () =>{
