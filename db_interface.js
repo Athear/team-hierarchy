@@ -53,6 +53,11 @@ module.exports={
         return getterPromise(queryStr);
     },
 
+    addRole : (title,salary,department) =>{
+        const queryStr = "INSERT INTO role SET ?";
+        return updaterPromise(queryStr,{title:title, salary:salary,department_id:department},`Added ${title} role`)
+    },
+
     addDepartment : (newName) =>{
         const queryStr = "INSERT INTO department SET ?";
         return updaterPromise(queryStr,{name:newName},`Added ${newName} department`)

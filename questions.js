@@ -38,9 +38,26 @@ const orgInput =[
     },
     {
         type:"list",
+        name:"org.newRoleDepartment",
+        message: "Which department does this role belong to?",
+        choices: async answers=>{
+            let depts = await answers.departments();
+            depts = depts.map(dep => {return {value:dep.id, name:dep.name}});
+            return depts;
+        },
+        when: answers=>{return answers.orgAct==="Add role"},
+        loop: false
+    },
+    {
+        type:"list",
         name:"org.removeRole",
         message: "Select the role to be deleted. Only roles with no associated employees may be deleted.",
-        choices: ["cancel"], //TODO: add function to get list from database
+        choices: async answers=>{
+            let roles = await answers.roles();
+            roles = roles.map(role => {return {value:role.id, name:role.title}});
+            roles.unshift({value:-1,name:'cancel'});
+            return roles;
+        },
         when: answers=>{return answers.orgAct==="Delete role"}
     },
     {
