@@ -1,8 +1,6 @@
 const mysql = require('mysql');
 require('dotenv').config();
 
-//TODO: this would be better split into classes. That would take a fair bit of refactoring though.
-
 const connection = mysql.createConnection({
     database: process.env.DB_NAME,
     user: process.env.DB_USER,

@@ -1,7 +1,3 @@
-
-// const mysql = require('mysql'); //DEBUG. Might not need this here;
-// require('dotenv').config();
-
 const inquirer = require("inquirer");
 const interface = require("./db_interface");
 const questions = require("./questions");
