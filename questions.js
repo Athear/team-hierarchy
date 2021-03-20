@@ -1,6 +1,5 @@
 const mainList = [
     "View all employees",
-    "View employees by department",
     "View employees by manager",
     "View roles",
     "View departments",
