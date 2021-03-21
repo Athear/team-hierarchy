@@ -23,23 +23,23 @@ Follow the prompts in the command line to review and manage your organization.
 
 The main menu has options to view your employees, roles, and departments
 
-![main-menu](.\assets\main-menu.png)
+![main-menu](./assets/main-menu.png)
 
-![main-menu-cont](.\assets\main-menu-cont.png)
+![main-menu-cont](./assets/main-menu-cont.png)
 
 Sub-menus allow for adding and deleting roles and departments
 
-![organization-menu](.\assets\organization-menu.png)
+![organization-menu](./assets/organization-menu.png)
 
 or employees.
 
-![employee-menu](.\assets\employee-menu.png)
+![employee-menu](./assets/employee-menu.png)
 
 
 
 Once you have your organization set up, you can see all your employees at a glance!
 
-![employee-view](.\assets\view-employees.png)
+![employee-view](./assets/view-employees.png)
 
 
 
